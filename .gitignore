@@ -1,0 +1,22 @@
+# Arquivos de ambiente
+.env
+*.env
+
+# Cache e pastas temporárias
+__pycache__/
+*.py[cod]
+*.pkl
+
+# Dados pessoais ou sensíveis
+*.csv
+*.json
+
+# Pastas do sistema
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Streamlit config
+.streamlit/
