@@ -5,7 +5,6 @@
 # Cache e pastas temporárias
 __pycache__/
 *.py[cod]
-*.pkl
 
 # Dados pessoais ou sensíveis
 *.csv
