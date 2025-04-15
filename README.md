@@ -41,6 +41,8 @@ A IA agora conversa com você em forma de poesia, e o desafio é manter a rima!
     pip install -r requirements.txt
     ```
 
+---
+
 ## 📁 Estrutura atualizada do projeto:
 
 ```
@@ -57,6 +59,8 @@ chamados-ia/
 └── README.md
 ```
 
+---
+
 # 🤖 Central de Chamados com IA
 
 Este é um projeto simples e divertido usando **Python**, **IA** e **Streamlit** para classificar mensagens de clientes e responder de forma descontraída 😄.
@@ -70,6 +74,7 @@ Este é um projeto simples e divertido usando **Python**, **IA** e **Streamlit**
 - Gera uma **resposta automática com bom humor**, dependendo da categoria.
 
 ---
+
 
 ## 🚀 Como usar
 
