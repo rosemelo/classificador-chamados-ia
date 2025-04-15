@@ -1,3 +1,61 @@
+# 🎤 Repente com IA – Novo Modo Criativo
+
+Agora seu projeto evoluiu para algo ainda mais divertido: **um jogo de rimas com inteligência artificial** inspirado no repente nordestino! 🌵🎶
+
+A IA agora conversa com você em forma de poesia, e o desafio é manter a rima!
+
+---
+
+## 🕹️ Como funciona:
+
+- A IA começa com uma **pergunta rimada**.
+- Você responde com uma **rima criativa**.
+- Se rimar bem, a IA continua no mesmo ritmo.
+- Se não rimar, ela avisa com bom humor e te convida a tentar de novo!
+
+### 💬 Exemplo:
+
+**IA:**  
+> *Olá, meu amigo, que bom te encontrar!*  
+> *Me diga uma coisa: o que te faz sonhar?*
+
+**Você:**  
+> *Sonhar é viver, é poder viajar,*  
+> *Mesmo sem sair do lugar.*
+
+**IA:**  
+> *Essa resposta eu gostei de escutar,*  
+> *A mente criativa começa a brilhar!*
+
+---
+
+## 🚀 Como rodar o jogo de repente:
+
+    ```bash
+    streamlit run app.py
+    ```
+
+## Certifique-se de ter as dependências instaladas:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## 📁 Estrutura atualizada do projeto:
+
+chamados-ia/
+├── app.py                   ← Interface principal (agora com o jogo de rimas)
+├── classify.py             ← (Modo anterior) Classificação de chamados
+├── repente_ia.py           ← Nova lógica para gerar rimas e perguntas poéticas
+├── respostas.py            ← Respostas automáticas (modo anterior)
+├── data/
+│   └── rodadas.csv         ← Histórico das interações rimadas
+├── model/
+│   └── classificador.pkl   ← Modelo de IA do classificador (modo anterior)
+├── requirements.txt
+└── README.md
+
+
 # 🤖 Central de Chamados com IA
 
 Este é um projeto simples e divertido usando **Python**, **IA** e **Streamlit** para classificar mensagens de clientes e responder de forma descontraída 😄.
