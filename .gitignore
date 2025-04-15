@@ -19,3 +19,21 @@ Thumbs.db
 
 # Streamlit config
 .streamlit/
+
+# Arquivos de dependências
+Pipfile
+Pipfile.lock
+requirements.txt
+
+# Logs
+*.log
+
+# Build e distribuições
+build/
+dist/
+
+# Imagens temporárias
+*.png
+*.jpg
+*.jpeg
+*.gif

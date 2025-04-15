@@ -2,22 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 
-from classify import classificar
-from respostas import gerar_resposta
-
-st.set_page_config(page_title="Classificador de Chamados", layout="centered")
-
-st.title("🤖 Classificador de Chamados com IA")
-
-st.markdown("""
-Bem-vindo(a)! Este aplicativo utiliza **inteligência artificial** para ajudar a classificar automaticamente os chamados que você digitar.
-
-### Como usar:
-- Escreva abaixo uma descrição de chamado técnico, como por exemplo:
-  - *“Não consigo acessar o sistema desde ontem”*
-  - *“Erro 403 ao tentar acessar a intranet”*
-- O sistema irá prever a **categoria do chamado** e gerar uma **resposta automática**.
-""")
+from repente_ia import gerar_pergunta, gerar_resposta_rimada
 
 # === Função para registrar a interação ===
 def registrar_interacao(rodada, tipo, texto, caminho_csv='data/rodadas.csv'):
@@ -26,36 +11,63 @@ def registrar_interacao(rodada, tipo, texto, caminho_csv='data/rodadas.csv'):
         'tipo': tipo,
         'texto': texto
     }])
-
     if os.path.exists(caminho_csv):
         novo_registro.to_csv(caminho_csv, mode='a', header=False, index=False)
     else:
         novo_registro.to_csv(caminho_csv, mode='w', header=True, index=False)
 
+# === Inicialização de sessão ===
+if 'rodada' not in st.session_state:
+    st.session_state.rodada = 1
+if 'pergunta_ia' not in st.session_state:
+    st.session_state.pergunta_ia = gerar_pergunta()
+
+# === Layout da página ===
+st.set_page_config(page_title="Repente com IA", layout="centered")
+st.title("🎤 Repente com IA")
+
+st.markdown("""
+Bem-vindo(a)! Esse é o jogo de **repente com IA**. Vamos rimar e criar versos juntos!
+
+### Como funciona:
+- A IA começa com uma pergunta rimada, e você responde **rimando também**!
+- Se você acertar a rima, a IA continua a conversa no mesmo ritmo!
+- Se não rimar, a IA avisa e te convida a tentar novamente.
+
+Vamos ver o que sai dessa interação criativa?
+""")
+
+# Exibir a pergunta atual da IA
+st.markdown(f"**IA ({st.session_state.rodada}ª rodada):**\n> {st.session_state.pergunta_ia}")
+
 # Entrada do usuário
-texto_usuario = st.text_area(
-    "📨 Digite a descrição do chamado:",
-    placeholder="Ex: Preciso de acesso ao sistema XYZ para realizar meus relatórios."
-)
+resposta_usuario = st.text_area("🎤 Sua resposta rimada:")
 
-# Simples controle de rodada
-rodada = 1  # futuramente você pode usar uma variável de estado ou data/hora
-
-# Botão de ação
-if st.button("Classificar"):
-    if texto_usuario.strip() == "":
-        st.warning("⚠️ Por favor, digite algo antes de classificar!")
+# Botão para responder
+if st.button("Responder"):
+    if resposta_usuario.strip() == "":
+        st.warning("⚠️ Por favor, digite sua resposta rimada!")
     else:
-        categoria = classificar(texto_usuario)
-        resposta = gerar_resposta(categoria)
+        # Gerar resposta da IA baseada na rima
+        resposta_ia = gerar_resposta_rimada(st.session_state.pergunta_ia, resposta_usuario)
 
-        st.success(f"✅ **Categoria prevista:** {categoria}")
-        st.info(f"💡 **Resposta automática:** {resposta}")
+        # Mostrar resposta da IA
+        st.markdown(f"**IA:**\n> {resposta_ia}")
 
         # Registrar interações
-        registrar_interacao(rodada, "usuário", texto_usuario)
-        registrar_interacao(rodada, "IA", resposta)
-        registrar_interacao(rodada, "feedback", f"Classificado como '{categoria}'")
+        registrar_interacao(st.session_state.rodada, "IA", st.session_state.pergunta_ia)
+        registrar_interacao(st.session_state.rodada, "usuário", resposta_usuario)
+        registrar_interacao(st.session_state.rodada, "IA", resposta_ia)
+
+        # Avança para próxima rodada e nova pergunta
+        st.session_state.rodada += 1
+        st.session_state.pergunta_ia = gerar_pergunta()
+
+# Botão para reiniciar
+if st.button("🔄 Reiniciar Conversa"):
+    st.session_state.rodada = 1
+    st.session_state.pergunta_ia = gerar_pergunta()
+    st.success("A conversa foi reiniciada!")
 
 
 
