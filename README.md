@@ -43,6 +43,7 @@ A IA agora conversa com você em forma de poesia, e o desafio é manter a rima!
 
 ## 📁 Estrutura atualizada do projeto:
 
+```
 chamados-ia/
 ├── app.py                   ← Interface principal (agora com o jogo de rimas)
 ├── classify.py             ← (Modo anterior) Classificação de chamados
@@ -54,7 +55,7 @@ chamados-ia/
 │   └── classificador.pkl   ← Modelo de IA do classificador (modo anterior)
 ├── requirements.txt
 └── README.md
-
+```
 
 # 🤖 Central de Chamados com IA
 
